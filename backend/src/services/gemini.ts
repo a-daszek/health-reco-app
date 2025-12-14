@@ -8,11 +8,11 @@ Na podstawie wyników krwi podaj krótką, ogólną rekomendację
 Nie stawiaj diagnozy.
 
 Wyniki:
-- Hemoglobina: ${blood.hemoglobin ?? "brak"}
-- WBC: ${blood.wbc ?? "brak"}
-- Płytki: ${blood.platelets ?? "brak"}
-- Glukoza: ${blood.glucose ?? "brak"}
-- Cholesterol: ${blood.cholesterolTotal ?? "brak"}
+- Hemoglobina (g/dL): ${blood.hemoglobin ?? "brak"}
+- WBC(10^9/L): ${blood.wbc ?? "brak"}
+- Płytki (10^9/L): ${blood.platelets ?? "brak"}
+- Glukoza (mg/dL): ${blood.glucose ?? "brak"}
+- Cholesterol całkowity (mg/dL): ${blood.cholesterolTotal ?? "brak"}
 `;
 
   const response = await fetch(
