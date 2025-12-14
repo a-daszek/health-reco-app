@@ -5,6 +5,8 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import path from "path";
 import authRoutes from "./routes/auth";
+import userRoutes from "./routes/users";
+import recommendationsRoutes from "./routes/recommendations";
 
 mongoose
   .connect(process.env.MONGODB_CONNECTION_STRING as string)
@@ -28,6 +30,8 @@ app.get("/health", async (req: Request, res: Response) => {
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/recommendations", recommendationsRoutes);
 
 app.get("/*splat", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));

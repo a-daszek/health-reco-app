@@ -1,9 +1,9 @@
 const Footer = () => {
   return (
-    <footer id="footer" className="bg-gray-900 text-white">
+    <footer id="footer" className="bg-red-900 text-white">
       <div className="container mx-auto px-6 py-12 flex flex-col md:flex-row justify-between gap-8">
         <div className="max-w-md">
-          <h3 className="font-bold text-lg">Health Repo App</h3>
+          <h3 className="font-bold text-lg">Health Reco</h3>
           <p className="text-sm mt-2 text-white/80">
             Spersonalizowane rekomendacje zdrowotne. Naszym celem jest pomóc Ci
             podejmować lepsze decyzje dotyczące zdrowia w oparciu o dane Twojej
@@ -20,12 +20,13 @@ const Footer = () => {
               44-100 Gliwice
               <br />
               Email:{" "}
-              <a className="underline" href="mailto:healthrepoapp@health.pl">
-                healthrepoapp@health.pl
+              <a className="underline" href="mailto:healthrecoapp@health.pl">
+                healthreco@health.pl
               </a>
             </address>
             <p className="mt-3 text-xs">
-              © {new Date().getFullYear()} Health Repo App
+              © {new Date().getFullYear()} Health Reco - Wszelkie prawa
+              zastrzeżone.
             </p>
           </div>
         </div>

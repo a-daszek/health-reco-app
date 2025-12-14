@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import * as apiClient from "../api";
-import { useLocation, useNavigate } from "react-router-dom";
-import { toast } from "sonner";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAppContext } from "../../contexts/AppContext";
 
 export type SignInFormData = {
   email: string;
@@ -10,6 +10,7 @@ export type SignInFormData = {
 };
 
 const SignIn = () => {
+  const { showToast } = useAppContext();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const location = useLocation();
@@ -23,12 +24,12 @@ const SignIn = () => {
   const mutation = useMutation<unknown, Error, SignInFormData>({
     mutationFn: apiClient.signIn,
     onSuccess: async () => {
-      toast.success("Zalogowano się pomyślnie.");
+      showToast({ message: "Zalogowano się pomyślnie", type: "SUCCESS" });
       await queryClient.invalidateQueries({ queryKey: ["validateToken"] });
       navigate(location.state?.from?.pathname || "/");
     },
     onError: (error: Error) => {
-      toast.error(`${error}`);
+      showToast({ message: error.message, type: "ERROR" });
     },
   });
 
@@ -67,6 +68,12 @@ const SignIn = () => {
         )}
       </label>
       <span className="flex items-center justify-between">
+        <span className="text-sm">
+          Nie masz konta?{" "}
+          <Link className="underline" to="/register">
+            Stwórz je tutaj
+          </Link>
+        </span>
         <button type="submit">Zaloguj się</button>
       </span>
     </form>

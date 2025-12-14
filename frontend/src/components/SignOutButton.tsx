@@ -1,19 +1,19 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import * as apiClient from "../api";
-import { toast } from "sonner";
+import { useAppContext } from "../../contexts/AppContext";
 
 const SignOutButton = () => {
   const queryClient = useQueryClient();
-
+  const { showToast } = useAppContext();
   const mutation = useMutation({
     mutationFn: apiClient.signOut,
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["validateToken"] });
       queryClient.removeQueries({ queryKey: ["validateToken"] });
-      toast.success("Wylogowano pomyślnie");
+      showToast({ message: "Wylogowano pomyślnie", type: "SUCCESS" });
     },
     onError: (error: Error) => {
-      toast.error(`Coś poszło nie tak: ${error}`);
+      showToast({ message: `Coś poszło nie tak: ${error}`, type: "ERROR" });
     },
   });
 
@@ -21,7 +21,14 @@ const SignOutButton = () => {
     mutation.mutate();
   };
 
-  return <button onClick={handleClick}>Wyloguj się</button>;
+  return (
+    <button
+      onClick={handleClick}
+      className="block justify-self-end mr-6 mb-4 underline text-white"
+    >
+      Wyloguj się
+    </button>
+  );
 };
 
 export default SignOutButton;

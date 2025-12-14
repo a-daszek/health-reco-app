@@ -25,20 +25,4 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-// const verifyAdmin = async (req: Request, res: Response, next: NextFunction) => {
-//   try {
-//     const user = await User.findById(req.userId);
-//     if (!user) {
-//       return res.status(404).json({ message: "Użytkownik nie znaleziony" });
-//     }
-//     if (!user.isAdmin) {
-//       return res.status(403).json({ message: "Brak dostępu" });
-//     }
-//     next();
-//   } catch (error) {
-//     res.status(500).json({ message: "Coś poszło nie tak." });
-//   }
-// };
-
-// export { verifyToken, verifyAdmin };
 export { verifyToken };
