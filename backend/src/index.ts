@@ -29,7 +29,7 @@ app.get("/health", async (req: Request, res: Response) => {
 
 app.use("/api/auth", authRoutes);
 
-app.get("*", (req: Request, res: Response) => {
+app.get("/*splat", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
 });
 

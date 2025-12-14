@@ -1,3 +1,5 @@
 .env
+.env.test
 dist/
 node_modules/
+hashpass.js
